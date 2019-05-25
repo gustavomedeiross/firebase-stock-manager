@@ -36,7 +36,6 @@ async function createAccountFirebase(){
   catch(err){
     try{
       let user = await auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
-      alert(user.user.uid);
       await firestore.collection('usersData').doc(user.user.uid).set({
         exists: true
       });
