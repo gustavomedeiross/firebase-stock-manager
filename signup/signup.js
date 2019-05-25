@@ -12,7 +12,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
-
+const firestore = firebase.firestore();
 
 //DOM
 const emailInput = document.querySelector("input[type='email']");
@@ -35,8 +35,11 @@ async function createAccountFirebase(){
   //if it doesn't exists: 
   catch(err){
     try{
-      alert(err);
-      auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
+      let user = await auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
+      alert(user.user.uid);
+      await firestore.collection('usersData').doc(user.user.uid).set({
+        exists: true
+      });
       alert('Cadastro realizado com sucesso!');
       location.href = '../index.html';
     }catch(err){
