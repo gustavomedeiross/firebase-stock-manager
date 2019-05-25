@@ -8,3 +8,4 @@ It's a very simple project/system, but it's something.
 
 Feel free to test it out and give me any tips if you wan't (Any help will be appreciated!).
 
+You can check it out [here](mendes13.github.io/stockSystem)
